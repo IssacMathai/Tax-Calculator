@@ -1,4 +1,4 @@
-import init, {calculate_tax} from "/pkg/tax_webassembly.js"
+import init, {calculate_tax} from "./pkg/tax_webassembly.js"
 
 async function run() {
     await init()
