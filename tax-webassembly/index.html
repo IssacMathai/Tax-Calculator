@@ -5,14 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tax Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <label for="income">Income: </label>
     <input type="number" id="income" name="income" min="0">
     <button id="calculateButton">Calculate Tax</button>
     <p id="result"></p>
-    <script type="module" src="tax.js"></script>
+    <script type="module">
+import init, {calculate_tax} from "/pkg/tax_webassembly.js"
+
+async function run() {
+    await init()
+
+    function calculateTax() {
+        console.log(0)
+        const income = parseFloat(document.getElementById("income").value)
+        const tax = calculate_tax(income)
+        document.getElementById("result").innerText = `Tax: $${tax.toFixed(2)}`
+        console.log(0)
+    }
+
+    document.getElementById("calculateButton").addEventListener("click", calculateTax)
+}
+run()
+    </script>
     
   </body>
 </html>
